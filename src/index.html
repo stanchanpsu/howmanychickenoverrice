@@ -61,48 +61,67 @@
 
         <!-- Top Stats Banner: Dynamic Comparisons -->
         <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-            <!-- Stat 1: FIRE Age Without Habits -->
-            <div class="bg-gradient-to-br from-emerald-950 to-slate-900 border border-emerald-500/30 rounded-2xl p-5 shadow-lg relative overflow-hidden">
+            <!-- Stat 1: FIRE Age Without Habits (Optimal) -->
+            <div class="bg-gradient-to-br from-emerald-950 to-slate-900 border border-emerald-500/30 rounded-2xl p-5 shadow-lg relative overflow-hidden flex flex-col justify-between">
                 <div class="absolute right-3 top-3 text-emerald-500/10 text-5xl font-bold"><i class="fa-solid fa-bolt"></i></div>
-                <p class="text-xs font-semibold uppercase tracking-wider text-emerald-400 mb-1">Optimal FIRE Age</p>
-                <div class="flex items-baseline space-x-2">
-                    <span id="stat-opt-age" class="text-3xl font-extrabold text-white">42</span>
-                    <span class="text-sm text-slate-400">years old</span>
+                <div>
+                    <p class="text-xs font-semibold uppercase tracking-wider text-emerald-400 mb-1">Optimal Horizon</p>
+                    <div class="flex items-baseline space-x-2">
+                        <span id="stat-opt-age" class="text-3xl font-extrabold text-white">42</span>
+                        <span class="text-xs text-slate-400">years old</span>
+                    </div>
                 </div>
-                <p class="text-xs text-slate-400 mt-2">Without the extra micro-expenses</p>
+                <div class="mt-4 pt-2 border-t border-slate-800/80 text-[11px] text-slate-400">
+                    Target Nest Egg: <span id="stat-opt-target" class="text-emerald-400 font-bold">$1,050,000</span>
+                </div>
             </div>
 
-            <!-- Stat 2: FIRE Age With Habits -->
-            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-lg relative overflow-hidden">
+            <!-- Stat 2: FIRE Age With Habits (Standard) -->
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-lg relative overflow-hidden flex flex-col justify-between">
                 <div class="absolute right-3 top-3 text-slate-700/20 text-5xl font-bold"><i class="fa-solid fa-circle-minus"></i></div>
-                <p class="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">Standard FIRE Age</p>
-                <div class="flex items-baseline space-x-2">
-                    <span id="stat-std-age" class="text-3xl font-extrabold text-white">47</span>
-                    <span class="text-sm text-slate-400">years old</span>
+                <div>
+                    <p class="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">Standard Horizon</p>
+                    <div class="flex items-baseline space-x-2">
+                        <span id="stat-std-age" class="text-3xl font-extrabold text-white">47</span>
+                        <span class="text-xs text-slate-400">years old</span>
+                    </div>
                 </div>
-                <p class="text-xs text-rose-400 mt-2 flex items-center gap-1">
-                    <i class="fa-solid fa-hourglass-half"></i> Delays retirement by <span id="stat-years-delay" class="font-bold">5</span> years
-                </p>
+                <div class="mt-4 pt-2 border-t border-slate-800/80 text-[11px] text-slate-400 flex flex-col">
+                    <div class="flex justify-between">
+                        <span>Target Nest Egg: <span id="stat-std-target" class="text-rose-400 font-bold">$1,186,875</span></span>
+                    </div>
+                    <div class="text-rose-400 mt-1 block text-[10px]">
+                        <span>Delays retirement by <span id="stat-years-delay" class="font-bold">5</span> years</span>
+                    </div>
+                </div>
             </div>
 
             <!-- Stat 3: Total Annual Cost of Habits -->
-            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-lg relative overflow-hidden">
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-lg relative overflow-hidden flex flex-col justify-between">
                 <div class="absolute right-3 top-3 text-slate-700/20 text-5xl font-bold"><i class="fa-solid fa-receipt"></i></div>
-                <p class="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">Annual Habit Leak</p>
-                <div class="flex items-baseline space-x-1">
-                    <span id="stat-annual-cost" class="text-3xl font-extrabold text-rose-400">$6,845</span>
+                <div>
+                    <p class="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">Annual Habit Leak</p>
+                    <div class="flex items-baseline space-x-1">
+                        <span id="stat-annual-cost" class="text-3xl font-extrabold text-rose-400">$5,475</span>
+                    </div>
                 </div>
-                <p class="text-xs text-slate-400 mt-2">Spent on toggled micro-expenses</p>
+                <div class="mt-4 pt-2 border-t border-slate-800/80 text-[11px] text-slate-400">
+                    Total spent on active habits yearly
+                </div>
             </div>
 
-            <!-- Stat 4: 30-Year Opportunity Cost -->
-            <div class="bg-gradient-to-br from-indigo-950 to-slate-900 border border-indigo-500/30 rounded-2xl p-5 shadow-lg relative overflow-hidden">
+            <!-- Stat 4: 30-Year Wealth Gap -->
+            <div class="bg-gradient-to-br from-indigo-950 to-slate-900 border border-indigo-500/30 rounded-2xl p-5 shadow-lg relative overflow-hidden flex flex-col justify-between">
                 <div class="absolute right-3 top-3 text-indigo-500/10 text-5xl font-bold"><i class="fa-solid fa-chart-line"></i></div>
-                <p class="text-xs font-semibold uppercase tracking-wider text-indigo-400 mb-1">30-Yr Opportunity Cost</p>
-                <div class="flex items-baseline space-x-1">
-                    <span id="stat-opportunity-cost" class="text-3xl font-extrabold text-indigo-300">$645,200</span>
+                <div>
+                    <p class="text-xs font-semibold uppercase tracking-wider text-indigo-400 mb-1">30-Yr Wealth Gap</p>
+                    <div class="flex items-baseline space-x-1">
+                        <span id="stat-opportunity-cost" class="text-3xl font-extrabold text-indigo-300">$516,300</span>
+                    </div>
                 </div>
-                <p class="text-xs text-indigo-400 mt-2">If those savings were invested</p>
+                <div class="mt-4 pt-2 border-t border-slate-800/80 text-[11px] text-indigo-400">
+                    Extra wealth generated if invested
+                </div>
             </div>
         </div>
 
@@ -236,6 +255,10 @@
                                 <i class="fa-solid fa-plus mr-1"></i> Add Custom Habit
                             </button>
                         </div>
+                        <!-- Add Habit Error Container -->
+                        <div id="add-habit-error" class="hidden text-rose-400 text-[11px] font-medium flex items-center gap-1.5 mt-2 p-2 rounded-lg bg-rose-500/10 border border-rose-500/20">
+                            <i class="fa-solid fa-circle-exclamation"></i> <span id="add-habit-error-text"></span>
+                        </div>
                     </div>
 
                     <!-- List of Habits -->
@@ -274,60 +297,29 @@
                     </div>
                 </div>
 
-                <!-- Opportunity & Habit Cost Deep Dive -->
+                <!-- Projected Net Worth Milestones Breakdown -->
                 <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-md">
                     <h2 class="text-base font-bold text-white mb-4 flex items-center gap-2">
-                        <i class="fa-solid fa-hourglass-start text-amber-400"></i> Lifetime Opportunity Cost Breakdown
+                        <i class="fa-solid fa-calculator text-amber-400"></i> Projected Net Worth by Age
                     </h2>
                     
                     <p class="text-xs text-slate-400 mb-4">
-                        Every dollar you save and invest is worth far more than face value over time. Here is the cumulative cost of active habits if invested at <span class="text-emerald-400 font-semibold" id="breakdown-roi-tag">7%</span>:
+                        See how your wealth builds over time. Eliminating daily habits allows your savings to compound, creating a widening wealth gap at key age milestones:
                     </p>
 
-                    <!-- Table showing projection metrics -->
+                    <!-- Table showing dynamic age milestones -->
                     <div class="overflow-x-auto">
                         <table class="w-full text-left text-xs border-collapse">
                             <thead>
                                 <tr class="border-b border-slate-800 text-slate-400 uppercase tracking-wider">
-                                    <th class="pb-3 font-semibold">Timeframe</th>
-                                    <th class="pb-3 text-right font-semibold">Direct Cost (Cash)</th>
-                                    <th class="pb-3 text-right font-semibold text-emerald-400">Value If Invested</th>
-                                    <th class="pb-3 text-right font-semibold text-amber-400">Retirement Delay Equivalent</th>
+                                    <th class="pb-3 font-semibold">Age Milestone</th>
+                                    <th class="pb-3 text-right font-semibold text-emerald-400">Scenario A (No Habits)</th>
+                                    <th class="pb-3 text-right font-semibold text-rose-400">Scenario B (With Habits)</th>
+                                    <th class="pb-3 text-right font-semibold text-amber-400">The Wealth Gap</th>
                                 </tr>
                             </thead>
-                            <tbody class="divide-y divide-slate-800/60 text-slate-300">
-                                <tr>
-                                    <td class="py-3 font-medium flex items-center gap-2">
-                                        <i class="fa-solid fa-calendar-day text-slate-500 w-4"></i> 1 Year
-                                    </td>
-                                    <td class="py-3 text-right" id="breakdown-1yr-direct">$0</td>
-                                    <td class="py-3 text-right text-emerald-400 font-semibold" id="breakdown-1yr-invested">$0</td>
-                                    <td class="py-3 text-right text-slate-400" id="breakdown-1yr-delay">--</td>
-                                </tr>
-                                <tr>
-                                    <td class="py-3 font-medium flex items-center gap-2">
-                                        <i class="fa-solid fa-calendar-days text-slate-500 w-4"></i> 5 Years
-                                    </td>
-                                    <td class="py-3 text-right" id="breakdown-5yr-direct">$0</td>
-                                    <td class="py-3 text-right text-emerald-400 font-semibold" id="breakdown-5yr-invested">$0</td>
-                                    <td class="py-3 text-right text-slate-400" id="breakdown-5yr-delay">--</td>
-                                </tr>
-                                <tr>
-                                    <td class="py-3 font-medium flex items-center gap-2">
-                                        <i class="fa-solid fa-calendar text-indigo-400 w-4"></i> 15 Years
-                                    </td>
-                                    <td class="py-3 text-right" id="breakdown-15yr-direct">$0</td>
-                                    <td class="py-3 text-right text-emerald-400 font-semibold" id="breakdown-15yr-invested">$0</td>
-                                    <td class="py-3 text-right text-slate-400" id="breakdown-15yr-delay">--</td>
-                                </tr>
-                                <tr class="bg-emerald-950/20">
-                                    <td class="py-3 px-2 font-semibold flex items-center gap-2 text-white">
-                                        <i class="fa-solid fa-clock-rotate-left text-emerald-400 w-4"></i> 30 Years
-                                    </td>
-                                    <td class="py-3 text-right font-semibold text-white" id="breakdown-30yr-direct">$0</td>
-                                    <td class="py-3 text-right text-emerald-300 font-bold" id="breakdown-30yr-invested">$0</td>
-                                    <td class="py-3 text-right text-amber-300 font-semibold" id="breakdown-30yr-delay">--</td>
-                                </tr>
+                            <tbody id="milestone-table-body" class="divide-y divide-slate-800/60 text-slate-300">
+                                <!-- Generated Dynamically by JS -->
                             </tbody>
                         </table>
                     </div>
@@ -339,6 +331,55 @@
 
     </main>
 
+    <!-- Edit Habit Custom Modal Overlay -->
+    <div id="edit-habit-modal" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm transition-all duration-200">
+        <div class="bg-slate-900 border border-slate-800 w-full max-w-md rounded-2xl p-6 shadow-2xl space-y-4">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                <h3 class="text-base font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-pen-to-square text-emerald-400"></i> Edit Lifestyle Habit
+                </h3>
+                <button onclick="closeEditModal()" class="text-slate-400 hover:text-white transition">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">Description / Habit Name</label>
+                    <input type="text" id="edit-habit-name" class="w-full rounded-lg bg-slate-950 border border-slate-800 p-2.5 text-sm text-white focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 placeholder-slate-600">
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">Cost ($)</label>
+                        <input type="number" id="edit-habit-cost" step="0.01" min="0" class="w-full rounded-lg bg-slate-950 border border-slate-800 p-2.5 text-sm text-white focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">Frequency</label>
+                        <select id="edit-habit-freq" class="w-full rounded-lg bg-slate-950 border border-slate-800 p-2.5 text-sm text-white focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500">
+                            <option value="daily">Daily</option>
+                            <option value="weekly">Weekly</option>
+                            <option value="monthly">Monthly</option>
+                            <option value="yearly">Yearly</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- Inline Error Box for Custom Modal -->
+                <div id="edit-modal-error" class="hidden text-rose-400 text-xs font-medium flex items-center gap-1.5 p-2.5 rounded-lg bg-rose-500/10 border border-rose-500/20">
+                    <i class="fa-solid fa-circle-exclamation"></i> <span id="edit-modal-error-text">Please check your inputs.</span>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-end space-x-3 pt-3 border-t border-slate-800">
+                <button onclick="closeEditModal()" class="px-4 py-2 text-xs font-semibold text-slate-400 hover:text-white transition rounded-lg">
+                    Cancel
+                </button>
+                <button onclick="saveHabitEdit()" class="px-4 py-2 text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-500 rounded-lg transition shadow-md shadow-emerald-950/50">
+                    Save Changes
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Interactive Footer -->
     <footer class="border-t border-slate-800 bg-slate-950 py-6 mt-12 text-center text-xs text-slate-500">
         <div class="max-w-7xl mx-auto px-4 space-y-2">
@@ -349,66 +390,63 @@
 
     <!-- Calculator Logic Script -->
     <script>
-        // Default micro-expenses habit presets (expanded list of daily/weekly/monthly leak culprits)
-        let habits = [
-            { id: '1', name: 'Buying Lunch out', cost: 15.00, frequency: 'daily', enabled: true },
-            { id: '2', name: 'Lattes/Daily Premium Coffee', cost: 5.50, frequency: 'daily', enabled: true },
-            { id: '3', name: 'Extra Dishwasher cycles (Half-empty)', cost: 0.85, frequency: 'daily', enabled: false },
-            { id: '4', name: 'Extra Laundry cycle (Warm water)', cost: 1.20, frequency: 'weekly', enabled: false },
-            { id: '5', name: 'Premium TV / Music Bundles', cost: 35.00, frequency: 'monthly', enabled: true },
-            { id: '6', name: 'Unused Gym Membership', cost: 65.00, frequency: 'monthly', enabled: false },
-            { id: '7', name: 'Frequent Weekend Food Delivery', cost: 45.00, frequency: 'weekly', enabled: true },
-            { id: '8', name: 'Energy drinks / Bottled water', cost: 4.50, frequency: 'daily', enabled: false },
-            { id: '9', name: 'Short distance rideshares (< 1 mile)', cost: 15.00, frequency: 'weekly', enabled: false },
-            { id: '10', name: 'Impulse online purchases', cost: 25.00, frequency: 'weekly', enabled: false },
-            { id: '11', name: 'Multiple streaming subscriptions', cost: 19.99, frequency: 'monthly', enabled: true },
-            { id: '12', name: 'Vending machine / Snack runs', cost: 3.50, frequency: 'daily', enabled: false },
-            { id: '13', name: 'Uncanceled app/software trials', cost: 12.00, frequency: 'monthly', enabled: false },
-            { id: '14', name: 'Buying Chicken over Rice', cost: 10.00, frequency: 'weekly', enabled: true }
-        ];
-
-        // Global Chart Instance
+        // Global States
+        let habits = [];
         let trajectoryChart = null;
+        let editingHabitId = null; // Track habit being edited in modal
+
+        // Reset default habits state - default ONLY to "Buying Lunch out" as checked, others listed but unchecked
+        const defaultHabits = [
+            { id: '1', name: 'Buying Lunch out', cost: 15.00, frequency: 'daily', enabled: true },
+            { id: '2', name: 'Buying Chicken over Rice', cost: 10.00, frequency: 'weekly', enabled: false },
+            { id: '3', name: 'Lattes/Daily Premium Coffee', cost: 5.50, frequency: 'daily', enabled: false },
+            { id: '4', name: 'Extra Dishwasher cycles (Half-empty)', cost: 0.85, frequency: 'daily', enabled: false },
+            { id: '5', name: 'Extra Laundry cycle (Warm water)', cost: 1.20, frequency: 'weekly', enabled: false },
+            { id: '6', name: 'Premium TV / Music Bundles', cost: 35.00, frequency: 'monthly', enabled: false },
+            { id: '7', name: 'Unused Gym Membership', cost: 65.00, frequency: 'monthly', enabled: false },
+            { id: '8', name: 'Frequent Weekend Food Delivery', cost: 45.00, frequency: 'weekly', enabled: false }
+        ];
 
         // On Load Initializer
         window.onload = function() {
+            habits = JSON.parse(JSON.stringify(defaultHabits)); // Deep copy defaults
             renderHabits();
             initChart();
             calculateFIRE();
             setupEventListeners();
         };
 
-        // Reset elements to default values
+        // Reset elements to default values with robust exist checks
         function resetToDefaults() {
-            document.getElementById('input-age').value = 30;
-            document.getElementById('input-networth').value = 50000;
-            document.getElementById('input-income').value = 95000;
-            document.getElementById('input-expenses').value = 42000;
-            document.getElementById('input-roi').value = 7;
-            document.getElementById('input-swr').value = 4;
+            const elSet = (id, val) => {
+                const el = document.getElementById(id);
+                if (el) el.value = val;
+            };
+            const textSet = (id, txt) => {
+                const el = document.getElementById(id);
+                if (el) el.innerText = txt;
+            };
+
+            elSet('input-age', 30);
+            elSet('input-networth', 50000);
+            elSet('input-income', 95000);
+            elSet('input-expenses', 42000);
+            elSet('input-roi', 7);
+            elSet('input-swr', 4);
 
             // Reset dynamic value displays
-            document.getElementById('val-age').innerText = "30 years";
-            document.getElementById('val-roi').innerText = "7%";
-            document.getElementById('val-swr').innerText = "4%";
+            textSet('val-age', "30 years");
+            textSet('val-roi', "7%");
+            textSet('val-swr', "4%");
 
-            // Reset default habits state
-            habits = [
-                { id: '1', name: 'Buying Lunch out', cost: 15.00, frequency: 'daily', enabled: true },
-                { id: '2', name: 'Lattes/Daily Premium Coffee', cost: 5.50, frequency: 'daily', enabled: true },
-                { id: '3', name: 'Extra Dishwasher cycles (Half-empty)', cost: 0.85, frequency: 'daily', enabled: false },
-                { id: '4', name: 'Extra Laundry cycle (Warm water)', cost: 1.20, frequency: 'weekly', enabled: false },
-                { id: '5', name: 'Premium TV / Music Bundles', cost: 35.00, frequency: 'monthly', enabled: true },
-                { id: '6', name: 'Unused Gym Membership', cost: 65.00, frequency: 'monthly', enabled: false },
-                { id: '7', name: 'Frequent Weekend Food Delivery', cost: 45.00, frequency: 'weekly', enabled: true },
-                { id: '8', name: 'Energy drinks / Bottled water', cost: 4.50, frequency: 'daily', enabled: false },
-                { id: '9', name: 'Short distance rideshares (< 1 mile)', cost: 15.00, frequency: 'weekly', enabled: false },
-                { id: '10', name: 'Impulse online purchases', cost: 25.00, frequency: 'weekly', enabled: false },
-                { id: '11', name: 'Multiple streaming subscriptions', cost: 19.99, frequency: 'monthly', enabled: true },
-                { id: '12', name: 'Vending machine / Snack runs', cost: 3.50, frequency: 'daily', enabled: false },
-                { id: '13', name: 'Uncanceled app/software trials', cost: 12.00, frequency: 'monthly', enabled: false },
-                { id: '14', name: 'Buying Chicken over Rice', cost: 10.00, frequency: 'weekly', enabled: true }
-            ];
+            // Clear any error states
+            const addErr = document.getElementById('add-habit-error');
+            if (addErr) addErr.classList.add('hidden');
+            const editErr = document.getElementById('edit-modal-error');
+            if (editErr) editErr.classList.add('hidden');
+
+            // Reset habits to default config
+            habits = JSON.parse(JSON.stringify(defaultHabits));
 
             renderHabits();
             calculateFIRE();
@@ -419,20 +457,23 @@
             const panel = document.getElementById('advanced-settings-panel');
             const icon = document.getElementById('advanced-toggle-icon');
             const text = document.getElementById('advanced-toggle-text');
-            if (panel.classList.contains('hidden')) {
-                panel.classList.remove('hidden');
-                icon.className = 'fa-solid fa-chevron-up';
-                text.innerText = 'Hide Rates & SWR';
-            } else {
-                panel.classList.add('hidden');
-                icon.className = 'fa-solid fa-chevron-down';
-                text.innerText = 'Show Rates & SWR';
+            if (panel && icon && text) {
+                if (panel.classList.contains('hidden')) {
+                    panel.classList.remove('hidden');
+                    icon.className = 'fa-solid fa-chevron-up';
+                    text.innerText = 'Hide Rates & SWR';
+                } else {
+                    panel.classList.add('hidden');
+                    icon.className = 'fa-solid fa-chevron-down';
+                    text.innerText = 'Show Rates & SWR';
+                }
             }
         }
 
         // Render current habits list inside inputs column
         function renderHabits() {
             const container = document.getElementById('habits-container');
+            if (!container) return;
             container.innerHTML = '';
 
             habits.forEach(habit => {
@@ -496,43 +537,115 @@
             calculateFIRE();
         }
 
-        // Prompt custom modal form inline to edit habit parameters
+        // Open Custom Edit Habit Modal
         function editHabitPrompt(id) {
             const habit = habits.find(h => h.id === id);
             if (!habit) return;
             
-            const newName = prompt("Edit habit name:", habit.name);
-            if (newName === null) return;
-            const newCostStr = prompt("Edit cost ($):", habit.cost.toFixed(2));
-            if (newCostStr === null) return;
-            const newCost = parseFloat(newCostStr);
+            editingHabitId = id;
 
-            if (newName && !isNaN(newCost) && newCost >= 0) {
-                habit.name = newName;
-                habit.cost = newCost;
-                renderHabits();
-                calculateFIRE();
-            }
+            // Populate current values
+            const nameIn = document.getElementById('edit-habit-name');
+            const costIn = document.getElementById('edit-habit-cost');
+            const freqIn = document.getElementById('edit-habit-freq');
+            
+            if (nameIn) nameIn.value = habit.name;
+            if (costIn) costIn.value = habit.cost;
+            if (freqIn) freqIn.value = habit.frequency;
+
+            // Clear modal errors
+            const errBox = document.getElementById('edit-modal-error');
+            if (errBox) errBox.classList.add('hidden');
+
+            // Show custom overlay
+            const modal = document.getElementById('edit-habit-modal');
+            if (modal) modal.classList.remove('hidden');
         }
 
-        // Add user defined habits to parameters list
+        // Close Custom Edit Habit Modal
+        function closeEditModal() {
+            const modal = document.getElementById('edit-habit-modal');
+            if (modal) modal.classList.add('hidden');
+            editingHabitId = null;
+        }
+
+        // Save modifications from Custom Modal
+        function saveHabitEdit() {
+            if (!editingHabitId) return;
+
+            const nameInput = document.getElementById('edit-habit-name');
+            const costInput = document.getElementById('edit-habit-cost');
+            const freqInput = document.getElementById('edit-habit-freq');
+
+            if (!nameInput || !costInput || !freqInput) return;
+
+            const name = nameInput.value.trim();
+            const cost = parseFloat(costInput.value);
+            const frequency = freqInput.value;
+
+            const errorContainer = document.getElementById('edit-modal-error');
+            const errorText = document.getElementById('edit-modal-error-text');
+
+            if (!name) {
+                if (errorContainer && errorText) {
+                    errorContainer.classList.remove('hidden');
+                    errorText.innerText = "Please specify a description for the habit.";
+                }
+                return;
+            }
+            if (isNaN(cost) || cost < 0) {
+                if (errorContainer && errorText) {
+                    errorContainer.classList.remove('hidden');
+                    errorText.innerText = "Please enter a valid expense cost ($0 or more).";
+                }
+                return;
+            }
+
+            // Find and apply modifications
+            const habit = habits.find(h => h.id === editingHabitId);
+            if (habit) {
+                habit.name = name;
+                habit.cost = cost;
+                habit.frequency = frequency;
+            }
+
+            renderHabits();
+            calculateFIRE();
+            closeEditModal();
+        }
+
+        // Add user-defined habits to parameters list (with customized non-alert warning banners)
         function addCustomHabit() {
             const nameEl = document.getElementById('new-habit-name');
             const costEl = document.getElementById('new-habit-cost');
             const freqEl = document.getElementById('new-habit-freq');
+            const errorBox = document.getElementById('add-habit-error');
+            const errorMsg = document.getElementById('add-habit-error-text');
+
+            if (!nameEl || !costEl || !freqEl) return;
 
             const name = nameEl.value.trim();
             const cost = parseFloat(costEl.value);
             const frequency = freqEl.value;
 
+            // Simple validation without standard alerts
             if (!name) {
-                alert("Please specify a description for the habit.");
+                if (errorBox && errorMsg) {
+                    errorBox.classList.remove('hidden');
+                    errorMsg.innerText = "Please specify a description for the habit.";
+                }
                 return;
             }
             if (isNaN(cost) || cost <= 0) {
-                alert("Please input a valid cost amount.");
+                if (errorBox && errorMsg) {
+                    errorBox.classList.remove('hidden');
+                    errorMsg.innerText = "Please input a positive numeric cost amount.";
+                }
                 return;
             }
+
+            // Clear error box if validation succeeds
+            if (errorBox) errorBox.classList.add('hidden');
 
             const newId = Date.now().toString();
             habits.push({
@@ -564,10 +677,13 @@
         function setupEventListeners() {
             const listen = (id, targetValId, suffix = '') => {
                 const el = document.getElementById(id);
-                el.addEventListener('input', (e) => {
-                    document.getElementById(targetValId).innerText = e.target.value + suffix;
-                    calculateFIRE();
-                });
+                if (el) {
+                    el.addEventListener('input', (e) => {
+                        const target = document.getElementById(targetValId);
+                        if (target) target.innerText = e.target.value + suffix;
+                        calculateFIRE();
+                    });
+                }
             };
 
             listen('input-age', 'val-age', ' years');
@@ -577,25 +693,37 @@
             // Set dynamic keystroke/blur listeners for raw text fields
             const inputs = ['input-networth', 'input-income', 'input-expenses'];
             inputs.forEach(id => {
-                document.getElementById(id).addEventListener('input', calculateFIRE);
+                const el = document.getElementById(id);
+                if (el) el.addEventListener('input', calculateFIRE);
             });
         }
 
         // Core Simulation Modeling Engine
         function calculateFIRE() {
+            // Safe DOM extraction helper
+            const getFloat = (id, fallback) => {
+                const el = document.getElementById(id);
+                return el ? (parseFloat(el.value) || fallback) : fallback;
+            };
+            const getInt = (id, fallback) => {
+                const el = document.getElementById(id);
+                return el ? (parseInt(el.value) || fallback) : fallback;
+            };
+            const textSet = (id, txt) => {
+                const el = document.getElementById(id);
+                if (el) el.innerText = txt;
+            };
+
             // Read UI states
-            const currentAge = parseInt(document.getElementById('input-age').value);
-            const initialNW = parseFloat(document.getElementById('input-networth').value) || 0;
-            const income = parseFloat(document.getElementById('input-income').value) || 0;
-            const coreExpenses = parseFloat(document.getElementById('input-expenses').value) || 0;
-            const roiPercent = parseFloat(document.getElementById('input-roi').value) || 7;
-            const swrPercent = parseFloat(document.getElementById('input-swr').value) || 4;
+            const currentAge = getInt('input-age', 30);
+            const initialNW = getFloat('input-networth', 0);
+            const income = getFloat('input-income', 0);
+            const coreExpenses = getFloat('input-expenses', 0);
+            const roiPercent = getFloat('input-roi', 7);
+            const swrPercent = getFloat('input-swr', 4);
 
             const r = roiPercent / 100;
             const swr = swrPercent / 100;
-
-            // Update UI tags
-            document.getElementById('breakdown-roi-tag').innerText = roiPercent + "%";
 
             // Calculate aggregate habit expenses
             let totalHabitsAnnual = 0;
@@ -606,7 +734,7 @@
             });
 
             // Display dynamic habit leak aggregate
-            document.getElementById('stat-annual-cost').innerText = "$" + formatNum(totalHabitsAnnual, 0);
+            textSet('stat-annual-cost', "$" + formatNum(totalHabitsAnnual, 0));
 
             // Establish Scenario parameters
             // Scenario A (Without Habits): Savings rate is higher, FIRE expense threshold is lower
@@ -619,17 +747,23 @@
             const fireTargetB = expensesB / swr;
             const annualSavingsB = income - expensesB;
 
+            // Update Target elements directly in Stat Cards
+            textSet('stat-opt-target', "$" + formatNum(fireTargetA, 0));
+            textSet('stat-std-target', "$" + formatNum(fireTargetB, 0));
+
             // Catch extreme conditions: user spending is more than earnings
             const warningEl = document.getElementById('calculator-warning');
-            if (annualSavingsB <= 0 || annualSavingsA <= 0) {
-                warningEl.classList.remove('hidden');
-                if (annualSavingsB <= 0 && annualSavingsA > 0) {
-                    warningEl.innerHTML = `<i class="fa-solid fa-triangle-exclamation text-xl flex-shrink-0"></i><div><span class="font-bold">Caution:</span> Your micro-expenses push your savings rate into the negative ($${formatNum(annualSavingsB)}). Without habits, you save $${formatNum(annualSavingsA)} yearly. Cut micro-expenses to rescue your retirement plan!</div>`;
+            if (warningEl) {
+                if (annualSavingsB <= 0 || annualSavingsA <= 0) {
+                    warningEl.classList.remove('hidden');
+                    if (annualSavingsB <= 0 && annualSavingsA > 0) {
+                        warningEl.innerHTML = `<i class="fa-solid fa-triangle-exclamation text-xl flex-shrink-0"></i><div><span class="font-bold">Caution:</span> Your micro-expenses push your savings rate into the negative ($${formatNum(annualSavingsB)}). Without habits, you save $${formatNum(annualSavingsA)} yearly. Cut micro-expenses to rescue your retirement plan!</div>`;
+                    } else {
+                        warningEl.innerHTML = `<i class="fa-solid fa-triangle-exclamation text-xl flex-shrink-0"></i><div><span class="font-bold">Attention:</span> Core annual expenses ($${formatNum(coreExpenses)}) exceed your post-tax income ($${formatNum(income)}). FIRE is mathematically unreachable without structural lifestyle changes or higher earnings.</div>`;
+                    }
                 } else {
-                    warningEl.innerHTML = `<i class="fa-solid fa-triangle-exclamation text-xl flex-shrink-0"></i><div><span class="font-bold">Attention:</span> Core annual expenses ($${formatNum(coreExpenses)}) exceed your post-tax income ($${formatNum(income)}). FIRE is mathematically unreachable without structural lifestyle changes or higher earnings.</div>`;
+                    warningEl.classList.add('hidden');
                 }
-            } else {
-                warningEl.classList.add('hidden');
             }
 
             // Project trajectories over maximum 50-year horizon
@@ -646,6 +780,9 @@
             const targetLinesA = [];
             const targetLinesB = [];
 
+            // Storage for dynamic milestone years
+            const yearlyMilestones = [];
+
             for (let t = 0; t <= yearsToProject; t++) {
                 const projectionAge = currentAge + t;
                 dataLabels.push(`Age ${projectionAge}`);
@@ -656,6 +793,13 @@
 
                 targetLinesA.push(Math.round(fireTargetA));
                 targetLinesB.push(Math.round(fireTargetB));
+
+                // Save year balance metrics to calculate offset differences
+                yearlyMilestones.push({
+                    age: projectionAge,
+                    nwA: Math.round(nwA),
+                    nwB: Math.round(nwB)
+                });
 
                 // Capture transition points (when NW hits FIRE Target)
                 if (nwA >= fireTargetA && ageA === -1) {
@@ -670,76 +814,81 @@
                 nwB = nwB * (1 + r) + (annualSavingsB > 0 ? annualSavingsB : 0);
             }
 
-            // Compute Opportunity Cost for table dynamic entries
-            calculateOpportunityCosts(totalHabitsAnnual, r, swr, annualSavingsB, initialNW, fireTargetB);
-
             // Populate top dashboard cards with calculated numbers
             const fireAgeA_Text = ageA !== -1 ? ageA : "50+";
             const fireAgeB_Text = ageB !== -1 ? ageB : "50+";
 
-            document.getElementById('stat-opt-age').innerText = fireAgeA_Text;
-            document.getElementById('stat-std-age').innerText = fireAgeB_Text;
+            textSet('stat-opt-age', fireAgeA_Text);
+            textSet('stat-std-age', fireAgeB_Text);
 
-            if (ageA !== -1 && ageB !== -1) {
-                const delay = ageB - ageA;
-                document.getElementById('stat-years-delay').innerText = delay;
-                document.getElementById('stat-years-delay').parentElement.classList.remove('hidden');
-            } else if (ageA !== -1 && ageB === -1) {
-                document.getElementById('stat-years-delay').innerText = "50+";
-                document.getElementById('stat-years-delay').parentElement.classList.remove('hidden');
-            } else {
-                document.getElementById('stat-years-delay').parentElement.classList.add('hidden');
+            // Handle the years delay indicator dynamically and safely
+            const delayEl = document.getElementById('stat-years-delay');
+            if (delayEl) {
+                if (ageA !== -1 && ageB !== -1) {
+                    const delay = ageB - ageA;
+                    delayEl.innerText = delay;
+                    if (delayEl.parentElement && delayEl.parentElement.parentElement) {
+                        delayEl.parentElement.parentElement.classList.remove('hidden');
+                    }
+                } else if (ageA !== -1 && ageB === -1) {
+                    delayEl.innerText = "50+";
+                    if (delayEl.parentElement && delayEl.parentElement.parentElement) {
+                        delayEl.parentElement.parentElement.classList.remove('hidden');
+                    }
+                } else {
+                    if (delayEl.parentElement && delayEl.parentElement.parentElement) {
+                        delayEl.parentElement.parentElement.classList.add('hidden');
+                    }
+                }
             }
 
+            // Render Milestone Age wealth breakdown table
+            renderMilestonesTable(yearlyMilestones, currentAge);
+
             // Update line chart arrays
-            updateChartData(dataLabels, dataNW_A, dataNW_B, targetLinesA, targetLinesB, fireTargetA, fireTargetB);
+            updateChartData(dataLabels, dataNW_A, dataNW_B, targetLinesA, targetLinesB);
         }
 
-        // Formulate compound growth projections specifically targeting the individual's habits
-        // (The informational description footer has been removed)
-        function calculateOpportunityCosts(annualHabitCost, rate, swr, annualSavingsB, initialNW, fireTargetB) {
-            const timeframes = [1, 5, 15, 30];
+        // Formulate relative net worth offsets based on milestones and age profiles
+        function renderMilestonesTable(yearlyMilestones, currentAge) {
+            const tableBody = document.getElementById('milestone-table-body');
+            if (!tableBody) return;
+            tableBody.innerHTML = '';
+
+            // We pick offsets: 5, 10, 20, 30, and 45 years in the future
+            const offsets = [5, 10, 20, 30, 45];
             
-            timeframes.forEach(years => {
-                // Future value of a periodic saving (Habit cost):
-                // FV = P * [ ((1 + r)^t - 1) / r ]
-                let fvInvested = 0;
-                if (rate > 0) {
-                    fvInvested = annualHabitCost * ((Math.pow(1 + rate, years) - 1) / rate);
-                } else {
-                    fvInvested = annualHabitCost * years;
-                }
+            offsets.forEach(offset => {
+                const milestone = yearlyMilestones.find(m => m.age === (currentAge + offset));
+                if (milestone) {
+                    const diff = milestone.nwA - milestone.nwB;
+                    
+                    const rowHtml = `
+                        <tr class="${offset === 30 ? 'bg-emerald-950/20' : ''}">
+                            <td class="py-3 font-medium flex items-center gap-2">
+                                <i class="fa-solid fa-user-clock text-slate-500 w-4"></i> Age ${milestone.age} (${offset} yrs)
+                            </td>
+                            <td class="py-3 text-right text-emerald-400 font-semibold">$${formatNum(milestone.nwA, 0)}</td>
+                            <td class="py-3 text-right text-rose-400 font-semibold">$${formatNum(milestone.nwB, 0)}</td>
+                            <td class="py-3 text-right text-amber-300 font-bold">$${formatNum(diff, 0)}</td>
+                        </tr>
+                    `;
+                    tableBody.insertAdjacentHTML('beforeend', rowHtml);
 
-                const cashDirect = annualHabitCost * years;
-
-                // How much FIRE target delay does this represent? 
-                // Each dollar of habit adds $25 (at 4% SWR) or (1/SWR) to the required FIRE target.
-                const extraFireTargetNeeded = annualHabitCost / swr;
-                
-                // Let's estimate how many working years are added simply to support this habit portfolio
-                let delayMessage = "";
-                if (annualSavingsB > 0) {
-                    const yearsEquivalent = fvInvested / (annualSavingsB + annualHabitCost);
-                    delayMessage = `~ ${yearsEquivalent.toFixed(1)} Year${yearsEquivalent !== 1 ? 's' : ''}`;
-                } else {
-                    delayMessage = "Infinite Delay";
-                }
-
-                // Render in table
-                document.getElementById(`breakdown-${years}yr-direct`).innerText = "$" + formatNum(cashDirect, 0);
-                document.getElementById(`breakdown-${years}yr-invested`).innerText = "$" + formatNum(fvInvested, 0);
-                document.getElementById(`breakdown-${years}yr-delay`).innerText = delayMessage;
-
-                // Also bind the final 30-yr compound index directly to the summary card
-                if (years === 30) {
-                    document.getElementById('stat-opportunity-cost').innerText = "$" + formatNum(fvInvested, 0);
+                    // Sync 30-Year Wealth Gap with the fourth summary stat card safely
+                    if (offset === 30) {
+                        const targetEl = document.getElementById('stat-opportunity-cost');
+                        if (targetEl) targetEl.innerText = "$" + formatNum(diff, 0);
+                    }
                 }
             });
         }
 
         // Initialize Trajectory Chart Canvas Configuration
         function initChart() {
-            const ctx = document.getElementById('trajectoryChart').getContext('2d');
+            const canvas = document.getElementById('trajectoryChart');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
             
             // Set default font color
             Chart.defaults.color = '#94a3b8';
