@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Chart.js for smooth dynamic financial charts -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Chart.js Annotation Plugin for the Stop Income vertical marker line -->
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1/dist/chartjs-plugin-annotation.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
         body {
@@ -73,6 +75,7 @@
                 </div>
                 <div class="mt-4 pt-2 border-t border-slate-800/80 text-[11px] text-slate-400">
                     Target Nest Egg: <span id="stat-opt-target" class="text-emerald-400 font-bold">$1,050,000</span>
+                    <div class="mt-1 text-[10px]" id="survival-tag-a">Portfolio Status: Sustained</div>
                 </div>
             </div>
 
@@ -93,6 +96,7 @@
                     <div class="text-rose-400 mt-1 block text-[10px]">
                         <span>Delays retirement by <span id="stat-years-delay" class="font-bold">5</span> years</span>
                     </div>
+                    <div class="mt-1 text-[10px] text-slate-400" id="survival-tag-b">Portfolio Status: Sustained</div>
                 </div>
             </div>
 
@@ -156,6 +160,20 @@
                                    class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-emerald-500">
                         </div>
 
+                        <!-- Planned Stop Income Age (Retirement Age) -->
+                        <div>
+                            <div class="flex justify-between text-sm mb-1">
+                                <div class="flex items-center gap-1.5">
+                                    <label for="input-stopage" class="text-slate-300 font-medium">Stop Income Age</label>
+                                    <span class="text-[10px] text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-500/20">Retirement Age</span>
+                                </div>
+                                <span class="text-slate-400 font-bold" id="val-stopage">55 years</span>
+                            </div>
+                            <input type="range" id="input-stopage" min="18" max="85" value="55" 
+                                   class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-emerald-500">
+                            <span class="text-[10px] text-slate-400 mt-1 block">Your post-tax job income drops to $0 at this age.</span>
+                        </div>
+
                         <!-- Current Net Worth -->
                         <div>
                             <label for="input-networth" class="block text-sm font-medium text-slate-300 mb-1">Current Net Worth ($)</label>
@@ -163,7 +181,7 @@
                                 <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                                     <span class="text-slate-500 sm:text-sm">$</span>
                                 </div>
-                                <input type="number" id="input-networth" value="50000" step="5000" min="0"
+                                <input type="text" id="input-networth" value="50,000"
                                        class="block w-full rounded-lg border border-slate-700 bg-slate-950 py-2 pl-7 pr-3 text-white text-sm focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500">
                             </div>
                         </div>
@@ -175,7 +193,7 @@
                                 <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                                     <span class="text-slate-500 sm:text-sm">$</span>
                                 </div>
-                                <input type="number" id="input-income" value="95000" step="5000" min="0"
+                                <input type="text" id="input-income" value="95,000"
                                        class="block w-full rounded-lg border border-slate-700 bg-slate-950 py-2 pl-7 pr-3 text-white text-sm focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500">
                             </div>
                         </div>
@@ -190,7 +208,7 @@
                                 <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                                     <span class="text-slate-500 sm:text-sm">$</span>
                                 </div>
-                                <input type="number" id="input-expenses" value="42000" step="1000" min="0"
+                                <input type="text" id="input-expenses" value="42,000"
                                        class="block w-full rounded-lg border border-slate-700 bg-slate-950 py-2 pl-7 pr-3 text-white text-sm focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500">
                             </div>
                         </div>
@@ -244,7 +262,7 @@
                         <p class="text-xs font-semibold text-slate-300 mb-2">Quick Add Habit</p>
                         <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs">
                             <input type="text" id="new-habit-name" placeholder="Habit description" class="col-span-1 sm:col-span-1 rounded bg-slate-900 border border-slate-800 p-1.5 text-white placeholder-slate-500">
-                            <input type="number" id="new-habit-cost" placeholder="Cost ($)" step="0.01" class="rounded bg-slate-900 border border-slate-800 p-1.5 text-white placeholder-slate-500">
+                            <input type="text" id="new-habit-cost" placeholder="Cost ($)" class="rounded bg-slate-900 border border-slate-800 p-1.5 text-white placeholder-slate-500">
                             <select id="new-habit-freq" class="rounded bg-slate-900 border border-slate-800 p-1.5 text-white text-xs">
                                 <option value="daily">Daily</option>
                                 <option value="weekly">Weekly</option>
@@ -279,7 +297,7 @@
                             <h2 class="text-base font-bold text-white flex items-center gap-2">
                                 <i class="fa-solid fa-chart-line text-indigo-400"></i> Net Worth Trajectory Comparison
                             </h2>
-                            <p class="text-xs text-slate-400">Projecting compound growth and retirement horizons</p>
+                            <p class="text-xs text-slate-400">Dotted line marks chosen Stop Income Age. Nest egg shrinks when withdrawing.</p>
                         </div>
                         <div class="flex items-center space-x-3">
                             <span class="inline-flex items-center gap-1.5 text-xs text-emerald-400 font-medium">
@@ -300,11 +318,11 @@
                 <!-- Projected Net Worth Milestones Breakdown -->
                 <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-md">
                     <h2 class="text-base font-bold text-white mb-4 flex items-center gap-2">
-                        <i class="fa-solid fa-calculator text-amber-400"></i> Projected Net Worth by Age
+                        <i class="fa-solid fa-calculator text-amber-400"></i> Projected Net Worth by Age Milestone
                     </h2>
                     
                     <p class="text-xs text-slate-400 mb-4">
-                        See how your wealth builds over time. Eliminating daily habits allows your savings to compound, creating a widening wealth gap at key age milestones:
+                        See how your wealth compounds and supports you after you stop earning income. Values in gray indicate periods after you stop working:
                     </p>
 
                     <!-- Table showing dynamic age milestones -->
@@ -351,7 +369,7 @@
                 <div class="grid grid-cols-2 gap-3">
                     <div>
                         <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">Cost ($)</label>
-                        <input type="number" id="edit-habit-cost" step="0.01" min="0" class="w-full rounded-lg bg-slate-950 border border-slate-800 p-2.5 text-sm text-white focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500">
+                        <input type="text" id="edit-habit-cost" class="w-full rounded-lg bg-slate-950 border border-slate-800 p-2.5 text-sm text-white focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500">
                     </div>
                     <div>
                         <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">Frequency</label>
@@ -412,6 +430,7 @@
             habits = JSON.parse(JSON.stringify(defaultHabits)); // Deep copy defaults
             renderHabits();
             initChart();
+            setupNumericFormatting();
             calculateFIRE();
             setupEventListeners();
         };
@@ -428,14 +447,16 @@
             };
 
             elSet('input-age', 30);
-            elSet('input-networth', 50000);
-            elSet('input-income', 95000);
-            elSet('input-expenses', 42000);
+            elSet('input-stopage', 55);
+            elSet('input-networth', "50,000");
+            elSet('input-income', "95,000");
+            elSet('input-expenses', "42,000");
             elSet('input-roi', 7);
             elSet('input-swr', 4);
 
             // Reset dynamic value displays
             textSet('val-age', "30 years");
+            textSet('val-stopage', "55 years");
             textSet('val-roi', "7%");
             textSet('val-swr', "4%");
 
@@ -450,6 +471,79 @@
 
             renderHabits();
             calculateFIRE();
+        }
+
+        // Configure interactive comma formatting behaviors on monetary input elements
+        function setupNumericFormatting() {
+            setupIntegerFormatting('input-networth');
+            setupIntegerFormatting('input-income');
+            setupIntegerFormatting('input-expenses');
+            setupDecimalFormatting('new-habit-cost');
+            setupDecimalFormatting('edit-habit-cost');
+        }
+
+        // Applies dynamic formatting to integer inputs (removing non-digits and keeping commas)
+        function setupIntegerFormatting(id) {
+            const input = document.getElementById(id);
+            if (!input) return;
+
+            input.addEventListener('input', function(e) {
+                let cursorPosition = e.target.selectionStart;
+                let originalLength = e.target.value.length;
+
+                let clean = e.target.value.replace(/[^\d]/g, '');
+                if (clean === '') {
+                    e.target.value = '';
+                    calculateFIRE();
+                    return;
+                }
+
+                let num = parseInt(clean, 10);
+                e.target.value = num.toLocaleString('en-US');
+
+                let newLength = e.target.value.length;
+                cursorPosition = cursorPosition + (newLength - originalLength);
+                e.target.setSelectionRange(cursorPosition, cursorPosition);
+
+                calculateFIRE();
+            });
+        }
+
+        // Applies dynamic decimal formatting to habit cost inputs
+        function setupDecimalFormatting(id) {
+            const input = document.getElementById(id);
+            if (!input) return;
+
+            input.addEventListener('input', function(e) {
+                let cursorPosition = e.target.selectionStart;
+                let originalLength = e.target.value.length;
+
+                // Remove non-numeric characters except decimals
+                let clean = e.target.value.replace(/[^0-9.]/g, '');
+                
+                // Keep only the first decimal point
+                const parts = clean.split('.');
+                if (parts.length > 2) {
+                    clean = parts[0] + '.' + parts.slice(1).join('');
+                }
+
+                let integerPart = parts[0];
+                let decimalPart = parts.length > 1 ? '.' + parts[1].slice(0, 2) : '';
+
+                if (integerPart !== '') {
+                    integerPart = parseInt(integerPart, 10).toLocaleString('en-US');
+                }
+
+                if (clean === '.') {
+                    e.target.value = '.';
+                } else {
+                    e.target.value = integerPart + decimalPart;
+                }
+
+                let newLength = e.target.value.length;
+                cursorPosition = cursorPosition + (newLength - originalLength);
+                e.target.setSelectionRange(cursorPosition, cursorPosition);
+            });
         }
 
         // Toggle advanced sliders visibility
@@ -550,7 +644,10 @@
             const freqIn = document.getElementById('edit-habit-freq');
             
             if (nameIn) nameIn.value = habit.name;
-            if (costIn) costIn.value = habit.cost;
+            if (costIn) {
+                // Initialize the modal cost field with beautiful comma values
+                costIn.value = habit.cost.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            }
             if (freqIn) freqIn.value = habit.frequency;
 
             // Clear modal errors
@@ -580,7 +677,9 @@
             if (!nameInput || !costInput || !freqInput) return;
 
             const name = nameInput.value.trim();
-            const cost = parseFloat(costInput.value);
+            // Clean format commas before parsing
+            const cleanCostStr = costInput.value.replace(/,/g, '');
+            const cost = parseFloat(cleanCostStr);
             const frequency = freqInput.value;
 
             const errorContainer = document.getElementById('edit-modal-error');
@@ -625,7 +724,9 @@
             if (!nameEl || !costEl || !freqEl) return;
 
             const name = nameEl.value.trim();
-            const cost = parseFloat(costEl.value);
+            // Clean format commas before parsing
+            const cleanCostStr = costEl.value.replace(/,/g, '');
+            const cost = parseFloat(cleanCostStr);
             const frequency = freqEl.value;
 
             // Simple validation without standard alerts
@@ -675,39 +776,53 @@
 
         // Setup DOM event listeners for standard ranges
         function setupEventListeners() {
+            const ageInput = document.getElementById('input-age');
+            const stopageInput = document.getElementById('input-stopage');
+
             const listen = (id, targetValId, suffix = '') => {
                 const el = document.getElementById(id);
                 if (el) {
                     el.addEventListener('input', (e) => {
                         const target = document.getElementById(targetValId);
                         if (target) target.innerText = e.target.value + suffix;
+                        
+                        // Safety validation: Stop Income Age cannot be lower than Current Age
+                        if (id === 'input-age' && stopageInput) {
+                            const curAge = parseInt(e.target.value);
+                            const curStopVal = parseInt(stopageInput.value);
+                            if (curStopVal < curAge) {
+                                stopageInput.value = curAge;
+                                const valStopEl = document.getElementById('val-stopage');
+                                if (valStopEl) valStopEl.innerText = curAge + ' years';
+                            }
+                            stopageInput.min = curAge;
+                        }
+                        
                         calculateFIRE();
                     });
                 }
             };
 
             listen('input-age', 'val-age', ' years');
+            listen('input-stopage', 'val-stopage', ' years');
             listen('input-roi', 'val-roi', '%');
             listen('input-swr', 'val-swr', '%');
-
-            // Set dynamic keystroke/blur listeners for raw text fields
-            const inputs = ['input-networth', 'input-income', 'input-expenses'];
-            inputs.forEach(id => {
-                const el = document.getElementById(id);
-                if (el) el.addEventListener('input', calculateFIRE);
-            });
         }
 
         // Core Simulation Modeling Engine
         function calculateFIRE() {
-            // Safe DOM extraction helper
+            // Safe DOM extraction helper (clears formatted commas automatically before parsing)
             const getFloat = (id, fallback) => {
                 const el = document.getElementById(id);
-                return el ? (parseFloat(el.value) || fallback) : fallback;
+                if (!el) return fallback;
+                const cleanValue = el.value.replace(/,/g, '');
+                return parseFloat(cleanValue) || fallback;
             };
             const getInt = (id, fallback) => {
                 const el = document.getElementById(id);
-                return el ? (parseInt(el.value) || fallback) : fallback;
+                if (!el) return fallback;
+                const cleanValue = el.value.replace(/,/g, '');
+                return parseInt(cleanValue, 10) || fallback;
             };
             const textSet = (id, txt) => {
                 const el = document.getElementById(id);
@@ -716,6 +831,7 @@
 
             // Read UI states
             const currentAge = getInt('input-age', 30);
+            const stopIncomeAge = getInt('input-stopage', 55);
             const initialNW = getFloat('input-networth', 0);
             const income = getFloat('input-income', 0);
             const coreExpenses = getFloat('input-expenses', 0);
@@ -751,7 +867,7 @@
             textSet('stat-opt-target', "$" + formatNum(fireTargetA, 0));
             textSet('stat-std-target', "$" + formatNum(fireTargetB, 0));
 
-            // Catch extreme conditions: user spending is more than earnings
+            // Catch extreme conditions: user spending is more than earnings before retirement
             const warningEl = document.getElementById('calculator-warning');
             if (warningEl) {
                 if (annualSavingsB <= 0 || annualSavingsA <= 0) {
@@ -766,13 +882,17 @@
                 }
             }
 
-            // Project trajectories over maximum 50-year horizon
-            const yearsToProject = 50;
+            // Project trajectories over dynamic age-95 horizon (guaranteeing a long life projection)
+            const maxSimAge = 95;
+            // Guaranteeing we project at least 45 years to prevent empty milestones rows
+            const yearsToProject = Math.max(45, maxSimAge - currentAge);
             let nwA = initialNW;
             let nwB = initialNW;
 
-            let ageA = -1;
-            let ageB = -1;
+            let ageA = -1; // Age we actually cross FIRE target A
+            let ageB = -1; // Age we actually cross FIRE target B
+            let ageRanOutA = -1; // Age net worth depletes under Scenario A
+            let ageRanOutB = -1; // Age net worth depletes under Scenario B
 
             const dataLabels = [];
             const dataNW_A = [];
@@ -786,6 +906,16 @@
             for (let t = 0; t <= yearsToProject; t++) {
                 const projectionAge = currentAge + t;
                 dataLabels.push(`Age ${projectionAge}`);
+
+                // Enforce $0 floor if net worth depletes
+                if (nwA < 0) {
+                    nwA = 0;
+                    if (ageRanOutA === -1) ageRanOutA = projectionAge;
+                }
+                if (nwB < 0) {
+                    nwB = 0;
+                    if (ageRanOutB === -1) ageRanOutB = projectionAge;
+                }
 
                 // Save current balance for trajectory charts
                 dataNW_A.push(Math.round(nwA));
@@ -801,7 +931,7 @@
                     nwB: Math.round(nwB)
                 });
 
-                // Capture transition points (when NW hits FIRE Target)
+                // Capture transition points (when NW hits theoretical FIRE Target)
                 if (nwA >= fireTargetA && ageA === -1) {
                     ageA = projectionAge;
                 }
@@ -809,9 +939,20 @@
                     ageB = projectionAge;
                 }
 
-                // Compound calculations for next cycle
-                nwA = nwA * (1 + r) + (annualSavingsA > 0 ? annualSavingsA : 0);
-                nwB = nwB * (1 + r) + (annualSavingsB > 0 ? annualSavingsB : 0);
+                // Dynamic Compound Loop
+                // Check if user has stopped earning income (Stop Income Age reached)
+                const isWorking = projectionAge < stopIncomeAge;
+                
+                // Scenario A growth calculation
+                // Audited: Savings flows can be negative (structural deficit). Capping at zero was a math error.
+                const interestA = nwA * r;
+                const savingsFlowA = isWorking ? annualSavingsA : -expensesA;
+                nwA = nwA + interestA + savingsFlowA;
+
+                // Scenario B growth calculation
+                const interestB = nwB * r;
+                const savingsFlowB = isWorking ? annualSavingsB : -expensesB;
+                nwB = nwB + interestB + savingsFlowB;
             }
 
             // Populate top dashboard cards with calculated numbers
@@ -820,6 +961,25 @@
 
             textSet('stat-opt-age', fireAgeA_Text);
             textSet('stat-std-age', fireAgeB_Text);
+
+            // Update Survival Indicators on Dashboard
+            const statusTagA = document.getElementById('survival-tag-a');
+            if (statusTagA) {
+                if (ageRanOutA !== -1) {
+                    statusTagA.innerHTML = `Portfolio: <span class="text-rose-400 font-semibold">Runs out at Age ${ageRanOutA}</span>`;
+                } else {
+                    statusTagA.innerHTML = `Portfolio: <span class="text-emerald-400 font-semibold">Sustained to Age 95+</span>`;
+                }
+            }
+
+            const statusTagB = document.getElementById('survival-tag-b');
+            if (statusTagB) {
+                if (ageRanOutB !== -1) {
+                    statusTagB.innerHTML = `Portfolio: <span class="text-rose-400 font-semibold">Runs out at Age ${ageRanOutB}</span>`;
+                } else {
+                    statusTagB.innerHTML = `Portfolio: <span class="text-emerald-400 font-semibold">Sustained to Age 95+</span>`;
+                }
+            }
 
             // Handle the years delay indicator dynamically and safely
             const delayEl = document.getElementById('stat-years-delay');
@@ -843,14 +1003,14 @@
             }
 
             // Render Milestone Age wealth breakdown table
-            renderMilestonesTable(yearlyMilestones, currentAge);
+            renderMilestonesTable(yearlyMilestones, currentAge, stopIncomeAge);
 
             // Update line chart arrays
-            updateChartData(dataLabels, dataNW_A, dataNW_B, targetLinesA, targetLinesB);
+            updateChartData(dataLabels, dataNW_A, dataNW_B, targetLinesA, targetLinesB, stopIncomeAge, currentAge);
         }
 
         // Formulate relative net worth offsets based on milestones and age profiles
-        function renderMilestonesTable(yearlyMilestones, currentAge) {
+        function renderMilestonesTable(yearlyMilestones, currentAge, stopIncomeAge) {
             const tableBody = document.getElementById('milestone-table-body');
             if (!tableBody) return;
             tableBody.innerHTML = '';
@@ -862,11 +1022,21 @@
                 const milestone = yearlyMilestones.find(m => m.age === (currentAge + offset));
                 if (milestone) {
                     const diff = milestone.nwA - milestone.nwB;
+                    const isRetired = milestone.age >= stopIncomeAge;
                     
+                    // Create status badge to explain post-income timeline
+                    const phaseBadge = isRetired 
+                        ? `<span class="text-[9px] bg-slate-800 text-slate-400 border border-slate-700/80 px-1.5 py-0.5 rounded flex items-center gap-1"><i class="fa-solid fa-umbrella"></i> Retired</span>` 
+                        : `<span class="text-[9px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-1.5 py-0.5 rounded flex items-center gap-1"><i class="fa-solid fa-briefcase"></i> Working</span>`;
+
                     const rowHtml = `
-                        <tr class="${offset === 30 ? 'bg-emerald-950/20' : ''}">
+                        <tr class="${offset === 30 ? 'bg-indigo-950/20' : ''} ${isRetired ? 'opacity-80' : ''}">
                             <td class="py-3 font-medium flex items-center gap-2">
-                                <i class="fa-solid fa-user-clock text-slate-500 w-4"></i> Age ${milestone.age} (${offset} yrs)
+                                <i class="fa-solid fa-user-clock text-slate-500 w-4"></i> 
+                                <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
+                                    <span class="text-white">Age ${milestone.age} (${offset} yrs)</span>
+                                    ${phaseBadge}
+                                </div>
                             </td>
                             <td class="py-3 text-right text-emerald-400 font-semibold">$${formatNum(milestone.nwA, 0)}</td>
                             <td class="py-3 text-right text-rose-400 font-semibold">$${formatNum(milestone.nwB, 0)}</td>
@@ -900,7 +1070,7 @@
                     labels: [],
                     datasets: [
                         {
-                            label: 'Scenario A (No Habits, Savings Invested)',
+                            label: 'Scenario A (No Habits)',
                             data: [],
                             borderColor: '#34d399', // Emerald
                             backgroundColor: 'rgba(52, 211, 153, 0.05)',
@@ -911,7 +1081,7 @@
                             tension: 0.15
                         },
                         {
-                            label: 'Scenario B (With Habits, Standard Path)',
+                            label: 'Scenario B (With Habits)',
                             data: [],
                             borderColor: '#f43f5e', // Rose
                             backgroundColor: 'rgba(244, 63, 94, 0.02)',
@@ -1003,7 +1173,7 @@
         }
 
         // Dynamically update curves on variable triggers
-        function updateChartData(labels, dataA, dataB, targetLinesA, targetLinesB) {
+        function updateChartData(labels, dataA, dataB, targetLinesA, targetLinesB, stopIncomeAge, currentAge) {
             if (!trajectoryChart) return;
 
             trajectoryChart.data.labels = labels;
@@ -1011,6 +1181,36 @@
             trajectoryChart.data.datasets[1].data = dataB;
             trajectoryChart.data.datasets[2].data = targetLinesA;
             trajectoryChart.data.datasets[3].data = targetLinesB;
+
+            // Clear previous visual stop-income age indicators
+            if (trajectoryChart.options.plugins.annotation) {
+                delete trajectoryChart.options.plugins.annotation;
+            }
+
+            // Draw a vertical line representing when income drops to zero (Stop Income Age / Retirement point)
+            const stopOffset = stopIncomeAge - currentAge;
+            if (stopOffset >= 0 && stopOffset < labels.length) {
+                trajectoryChart.options.plugins.annotation = {
+                    annotations: {
+                        line1: {
+                            type: 'line',
+                            xMin: stopOffset,
+                            xMax: stopOffset,
+                            borderColor: 'rgba(251, 191, 36, 0.5)',
+                            borderWidth: 2,
+                            borderDash: [4, 4],
+                            label: {
+                                display: true,
+                                content: `Stop Income (Age ${stopIncomeAge})`,
+                                position: 'start',
+                                backgroundColor: '#1e293b',
+                                color: '#f59e0b',
+                                font: { size: 10, weight: 'bold' }
+                            }
+                        }
+                    }
+                };
+            }
 
             trajectoryChart.update();
         }
